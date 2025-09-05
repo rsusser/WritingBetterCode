@@ -4,6 +4,7 @@ Code examples for Informatica Feminale course "Writing Better Code" 2025
 Dependencies:
 
 1. cppunit (instructions for mac + Xcode)
+
 cppunit can be installed using Homebrew with the command `brew install cppunit`.
 This will save the headers and libs at /opt/homebrew/include/cppunit and
 /opt/homebrew/lib/libcppunit.dylib, respectively. In Xcode, under Build Settings

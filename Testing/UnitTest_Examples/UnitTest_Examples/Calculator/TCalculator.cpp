@@ -42,6 +42,7 @@ INSTANTIATE_TEST_SUITE_P(
             std::make_tuple(-2, 2, 0),  // negative plus inverse
             std::make_tuple(2, -3, -1), // positive plus negative with larger magnitude
             std::make_tuple(3, -2, 1),  // positive plus negative with smaller magnitude
+            std::make_tuple(-1, -2, 3) // two negative integers
     )
                       
 );

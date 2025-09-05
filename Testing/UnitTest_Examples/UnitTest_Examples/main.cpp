@@ -5,10 +5,10 @@
 //  Created by Rachel Susser on 05.09.25.
 //
 
-#include <iostream>
+#include <gtest/gtest.h>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+
+int main(int argc, char* argv[]) {
+    testing::InitGoogleTest(&argc, argv);
+        return RUN_ALL_TESTS();
 }

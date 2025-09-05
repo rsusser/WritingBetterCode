@@ -19,6 +19,7 @@ class UnnamedTestSuite : public CppUnit::TestFixture {
 //    CPPUNIT_TEST(testExample);
     CPPUNIT_TEST(testCheckInitialBalanceIs0);
     CPPUNIT_TEST(testMakeDepositAddsAmountToBalance);
+    CPPUNIT_TEST(testMakeMultipleDeposits);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -29,11 +30,13 @@ public:
 //        CPPUNIT_ASSERT_THROW(doSomething(), exceptionType);
 //        CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, actual, delta);
     }
+
     
     void testCheckInitialBalanceIs0() {
         BankAccount account;
-        CPPUNIT_ASSERT_EQUAL(account.getBalance(), 0.);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(account.getBalance(), 0., delta);
     }
+    
     
     void testMakeDepositAddsAmountToBalance() {
         BankAccount account;
@@ -42,6 +45,19 @@ public:
         account.deposit(amount);
         
         CPPUNIT_ASSERT_DOUBLES_EQUAL(account.getBalance(), amount, delta);
+    }
+    
+    
+    void testMakeMultipleDeposits() {
+        BankAccount account;
+        
+        static constexpr double first_amount = 1000.10;
+        static constexpr double second_amount = 200.02;
+        
+        account.deposit(first_amount);
+        account.deposit(second_amount);
+        
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(account.getBalance(), 1200.12, delta);
     }
 
 };

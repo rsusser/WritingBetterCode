@@ -11,5 +11,6 @@
 // checking the current balance
 class BankAccount
 {
-
+public:
+    double getBalance() const;
 };

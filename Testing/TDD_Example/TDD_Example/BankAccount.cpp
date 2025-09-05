@@ -6,3 +6,9 @@
 //
 
 #include "BankAccount.h"
+
+double BankAccount::getBalance() const
+{
+    const double balance = 0.;
+    return balance;
+}

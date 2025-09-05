@@ -11,13 +11,24 @@
 
 namespace TTaskList {
 
+bool TaskListContainsExactlyOnce(const TaskList& taskList,
+                                 const std::string& taskName) {
+    auto count = 0;
+    taskList.callForTasks([&count, &taskName](const Task& task) {
+        if (task.title == taskName) {
+            ++count;
+        }
+    });
+    return count == 1;
+}
+
 
 TEST(TaskList, AddTask) {
     TaskList tasks;
     tasks.add({"Do laundry", false});
     
     EXPECT_EQ(tasks.count(), 1lu); // does tasks.count() == 1 ?
-    EXPECT_EQ(tasks.getAtIndex(0).title, std::string("Do laundry"));
+    EXPECT_TRUE(TaskListContainsExactlyOnce(tasks, std::string("Do laundry")));
 }
 
 
@@ -26,7 +37,7 @@ TEST(TaskList, AddEmptyTask) {
     tasks.add({"", false});
     
     EXPECT_EQ(tasks.count(), 1lu);
-    EXPECT_EQ(tasks.getAtIndex(0).title, std::string(""));
+    EXPECT_TRUE(TaskListContainsExactlyOnce(tasks, std::string("")));
 }
 
 
@@ -36,8 +47,8 @@ TEST(TaskList, AddMultipleTasks) {
     tasks.add({"Study physics", true});
     
     EXPECT_EQ(tasks.count(), 2lu);
-    EXPECT_EQ(tasks.getAtIndex(0).title, std::string("Clean shower"));
-    EXPECT_EQ(tasks.getAtIndex(1).title, std::string("Study physics"));
+    EXPECT_TRUE(TaskListContainsExactlyOnce(tasks, std::string("Clean shower")));
+    EXPECT_TRUE(TaskListContainsExactlyOnce(tasks, std::string("Study physics")));
 }
 
 
@@ -47,9 +58,12 @@ TEST(TaskList, CheckDoneTasks) {
     tasks.add({"Study physics", true});
 
     int doneCount = 0;
-    for (auto i = 0; i < tasks.count(); ++i) {
-        if (tasks.getAtIndex(i).done) ++doneCount;
-    }
+    tasks.callForTasks([&tasks, &doneCount](const Task& task) {
+        if (task.done) {
+            ++doneCount;
+        }
+    });
+
     EXPECT_EQ(doneCount, 1);
 }
 

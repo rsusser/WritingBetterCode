@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -32,8 +33,10 @@ public:
         return tasks.size();
     }
     
-    Task& getAtIndex(size_t index) {
-        return tasks[index];
+    void callForTasks(std::function<void (const Task&)> func) const {
+        for (const auto& task : tasks) {
+            func(task);
+        }
     }
     
 private:

@@ -13,7 +13,8 @@
 
 class UnnamedTestSuite : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(UnnamedTestSuite);
-    CPPUNIT_TEST(testExample);
+//    CPPUNIT_TEST(testExample);
+    CPPUNIT_TEST(testCheckInitialBalanceIs0);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -23,6 +24,11 @@ public:
 //        CPPUNIT_ASSERT(true);
 //        CPPUNIT_ASSERT_THROW(doSomething(), exceptionType);
 //        CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, actual, delta);
+    }
+    
+    void testCheckInitialBalanceIs0() {
+        BankAccount account;
+        CPPUNIT_ASSERT_EQUAL(account.getBalance(), 0.);
     }
 
 };

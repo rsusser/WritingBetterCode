@@ -48,3 +48,7 @@ INSTANTIATE_TEST_SUITE_P(
 );
 
 
+// Exercise #1: write tests to check for integer overflow during addition
+// Exercise #2: write tests for multiply() and divide() to catch the bugs
+
+

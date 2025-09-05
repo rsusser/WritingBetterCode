@@ -9,6 +9,10 @@
 
 double BankAccount::getBalance() const
 {
-    const double balance = 0.;
     return balance;
+}
+
+void BankAccount::deposit(double amount)
+{
+    balance += amount;
 }

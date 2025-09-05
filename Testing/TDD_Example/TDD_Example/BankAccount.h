@@ -13,4 +13,8 @@ class BankAccount
 {
 public:
     double getBalance() const;
+    void deposit(double amount);
+    
+private:
+    double balance {0.};
 };

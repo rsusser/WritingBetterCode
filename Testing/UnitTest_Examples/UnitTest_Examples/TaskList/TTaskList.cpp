@@ -22,6 +22,14 @@ TEST(TaskList, AddTask) {
 }
 
 
+TEST(TaskList, AddEmptyTask) {
+    tasks.add({"", false});
+    
+    EXPECT_EQ(tasks.count(), 2lu);
+    EXPECT_EQ(tasks.getAtIndex(1).title, std::string(""));
+}
+
+
 TEST(TaskList, AddMultipleTasks) {
     tasks.add({"Clean shower", false});
     tasks.add({"Study physics", true});
